@@ -15,5 +15,5 @@ char c = str[i];
 _putchar(c);
 i++;
 }
-return (1);
+return (0);
 }

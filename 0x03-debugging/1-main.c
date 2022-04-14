@@ -12,7 +12,7 @@ i = 0;
 /*
  * while (1 < 10)
  * {
- * Infinite loop _ No increase of variable
+ * Infinite loop - No increase of variable
  * putchar (i);
 }
 */

@@ -10,9 +10,9 @@ int i;
 printf("Infinite loop incoming :(\n");
 i = 0;
 /*
- * whilee (1 < 10)
+ * while (1 < 10)
  * {
- * Infinite loop _ No increase of variablee
+ * Infinite loop _ No increase of variable
  * putchar (i);
 }
 */

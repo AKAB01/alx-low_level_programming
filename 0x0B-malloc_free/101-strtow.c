@@ -1,66 +1,30 @@
-#include "main.h"
+#include "holberton.h"
+#include <stdlib.h>
 
 /**
- * _isspace - check if a character is whitespace
- * @c: the character to check
+ * create_array - Creates an array of chars and
+ *                initializes it with a specific char.
+ * @size: The size of the array to be initialized.
+ * @c: The specific char to intialize the array with.
  *
- * Return: 1 is c is a whitespace character, otherwise 0
+ * Return: If size == 0 or the function fails - NULL.
+ *         Otherwise - a pointer to the array.
  */
-int _isspace(int c)
+char *create_array(unsigned int size, char c)
 {
-	if (c == 0x20 || (c >= 0x09 && c <= 0x0d))
-		return (1);
-	return (0);
-}
+	char *array;
+	unsigned int index;
 
+	if (size == 0)
+		return (NULL);
 
-/**
- * strtow - split a string into words
- * @str: a pointer to the string to split
- *
- * Return: NULL if memory allocation fails or if str is NULL or empty (""),
- * otherwise return a pointer to the array of words terminated by a NULL
- */
-char **strtow(char *str)
-{
-	char **words, *pos = str;
-	int w = 0, c;
+	array = malloc(sizeof(char) * size);
 
-	if (!(str && *str))
+	if (array == NULL)
 		return (NULL);
-	do {
-		while (_isspace(*pos))
-			++pos;
-		if (!*pos)
-			break;
-		while (*(++pos) && !_isspace(*pos))
-			;
-	} while (++w, *pos);
-	if (!w)
-		return (NULL);
-	words = (char **) malloc(sizeof(char *) * (w + 1));
-	if (!words)
-		return (NULL);
-	w = 0, pos = str;
-	do {
-		while (_isspace(*pos))
-			++pos;
-		if (!*pos)
-			break;
-		for (str = pos++; *pos && !_isspace(*pos); ++pos)
-			;
-		words[w] = (char *) malloc(sizeof(char) * (pos - str + 1));
-		if (!words[w])
-		{
-			while (w >  0)
-				free(words[--w]);
-			free(words);
-			return (NULL);
-		}
-		for (c = 0; str < pos; ++c, ++str)
-			words[w][c] = *str;
-		words[w][c] = '\0';
-	} while (++w, *pos);
-	words[w] = NULL;
-	return (words);
+
+	for (index = 0; index < size; index++)
+		array[index] = c;
+
+	return (array);
 }
